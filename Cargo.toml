@@ -1,6 +1,7 @@
 [package]
-name = "Stenography"
+name = "stenography"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+zune-inflate = "0.2.0"
