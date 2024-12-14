@@ -47,10 +47,8 @@ pub fn create_idat(s: String, ihdr: &IHDR) -> (Vec<Vec<u8>> /*Vector of Idat Buf
                 return vec!();
             }
         }
-        let mut checksum = encoder.checksum().to_ne_bytes().to_vec();
-        let mut intermediate_idat_buffer: Vec<u8> = vec!(8, 0);
+        let mut intermediate_idat_buffer: Vec<u8> = vec!();
         intermediate_idat_buffer.append(&mut encoder.finish().unwrap());
-        intermediate_idat_buffer.append(&mut checksum);
         return_vector.push(intermediate_idat_buffer);
         if (int_vec_len <= len) {
             break;

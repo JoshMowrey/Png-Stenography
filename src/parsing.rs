@@ -67,8 +67,7 @@ fn to_bin(v: Vec<u8>) -> String {
     return s;
 }
 
-pub fn last_idat() -> (usize, usize) {
-    let file_path = "in.png";
+pub fn last_idat(file_path: String) -> (usize, usize) {
     let file_data: Vec<u8> = fs::read(file_path).unwrap();
     
     let mut last_idat: usize = 0;
@@ -77,7 +76,7 @@ pub fn last_idat() -> (usize, usize) {
             if (file_data[i+1] == 68 && file_data[i+2] == 
                 65 && file_data[i+3] == 84) {
                 last_idat = i;
-                //change to find last idat and iend and return as a tupple
+                //change to find last idat and end of last idat and return as a tupple
             }
         }
         if (iter == 73) {
@@ -89,4 +88,12 @@ pub fn last_idat() -> (usize, usize) {
     return (0, 0);
     
 
+}
+
+pub fn get_input() -> String {
+    let file_path = "in.txt";
+
+    let file_data: String = String::from_utf8(fs::read(file_path).unwrap()).unwrap();
+    
+    return file_data;
 }

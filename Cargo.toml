@@ -5,4 +5,5 @@ edition = "2021"
 
 [dependencies]
 deflate = "1.0.0"
+inflate = "0.4.5"
 rand = "0.8.5"

@@ -1,0 +1,17 @@
+use std::fs;
+use inflate::inflate_bytes_zlib;
+
+
+pub fn decrypt(idat: usize, iend: usize) -> String {
+    let file_path = "out.png";
+    let file_data: Vec<u8> = fs::read(file_path).unwrap();
+        
+    let ihdr = parsing::parse_ihdr();
+    let to_be_writen: String = "Hello World".to_string();
+    let idats = create_idat::create_idat(to_be_writen, &ihdr);
+
+
+    let data = inflate_bytes_zlib(&idats).unwrap_or_else(|err| { eprintln!("{err}"); panic!();});
+    let ret: String = String::from_utf8(data).unwrap();
+    return ret;
+}
